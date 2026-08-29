@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>SIPBPNT OCR Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path>
+                    </svg>
+                </span>
+                <div class="title-group">
+                    <h1>SIPBPNT OCR</h1>
+                    <p>Sistem Deteksi Bantuan Pangan</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Area Kamera -->
+            <div class="scanner-wrapper">
+                <video id="video" autoplay playsinline muted></video>
+                <div id="frame" class="ktp-frame">
+                    <div class="laser"></div>
+                </div>
+                <div class="instruction-overlay">Posisikan NIK di dalam kotak</div>
+            </div>
+
+            <!-- Toolbar Kontrol -->
+            <div class="toolbar">
+                <button id="switchCamera" class="btn btn-outline">🔄 Putar</button>
+                <button id="torch" class="btn btn-outline" style="display:none;">🔦 Flash</button>
+                <button id="scan" class="btn btn-primary btn-large">▶ Mulai Scan KTP</button>
+            </div>
+
+            <!-- Status Card -->
+            <div id="status" class="status-card">
+                <span class="status-icon">ℹ️</span>
+                <span id="status-text">Menyiapkan kamera...</span>
+            </div>
+
+            <!-- Hasil Input -->
+            <div class="result-card">
+                <label for="nik">Hasil Deteksi NIK</label>
+                <input type="text" id="nik" placeholder="16 DIGIT NIK" maxlength="16" inputmode="numeric">
+                <button id="search" class="btn btn-success" style="display:none;">
+                    🔍 Cek Database SIPBPNT
+                </button>
+            </div>
+        </main>
+    </div>
+    
+    <canvas id="canvas" hidden></canvas>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

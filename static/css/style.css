@@ -1,0 +1,255 @@
+:root {
+    /* Oranye Terakota khas Mojokerto */
+    --accent: #ea580c;
+    --accent-hover: #c2410c;
+    
+    /* Hijau Institusi */
+    --primary: #059669;
+    --primary-hover: #047857;
+    
+    --success: #10b981;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body { 
+    background-color: var(--bg-color); 
+    font-family: 'Inter', sans-serif; 
+    color: var(--text-main); 
+    -webkit-font-smoothing: antialiased; 
+}
+
+.app-container { 
+    max-width: 480px; 
+    margin: 0 auto; 
+    background: var(--bg-color); 
+    min-height: 100vh; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.05); 
+}
+
+/* Header Navbar warna Terakota */
+.header { 
+    background: var(--accent); 
+    color: white; 
+    padding: 20px 15px; 
+    border-bottom-left-radius: 20px; 
+    border-bottom-right-radius: 20px; 
+    box-shadow: 0 4px 6px rgba(234, 88, 12, 0.3); 
+}
+
+.header-content { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.header-content .icon { 
+    display: flex;
+    align-items: center;
+}
+
+.title-group h1 { 
+    font-size: 20px; 
+    font-weight: 700; 
+}
+
+.title-group p { 
+    font-size: 13px; 
+    opacity: 0.9; 
+    margin-top: 2px; 
+}
+
+.main-content { 
+    padding: 20px 15px; 
+}
+
+/* Scanner Layout */
+.scanner-wrapper { 
+    position: relative; 
+    width: 100%; 
+    aspect-ratio: 4/3; 
+    background: #000; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+    border: 3px solid var(--card-bg); 
+}
+
+video { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.instruction-overlay { 
+    position: absolute; 
+    bottom: 15px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: rgba(0, 0, 0, 0.6); 
+    color: white; 
+    padding: 6px 16px; 
+    border-radius: 20px; 
+    font-size: 12px; 
+    font-weight: 600; 
+    letter-spacing: 0.5px; 
+    pointer-events: none; 
+}
+
+/* Box Frame Pemindaian */
+.ktp-frame {
+    position: absolute;
+    width: 92%; 
+    height: 65%;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(255, 255, 255, 0.4); 
+    border-radius: 12px; 
+    transition: 0.3s all ease;
+    box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.55); 
+    pointer-events: none;
+}
+
+.ktp-frame.active { 
+    border-color: var(--accent); 
+}
+
+/* Animation Laser Pemindai */
+.laser { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 3px; 
+    background-color: var(--accent); 
+    box-shadow: 0 0 15px 3px rgba(234, 88, 12, 0.6); 
+    opacity: 0; 
+}
+
+.ktp-frame.active .laser { 
+    animation: scan 1.5s infinite linear; 
+}
+
+@keyframes scan { 
+    0% { top: 0; opacity: 0; } 
+    10% { opacity: 1; } 
+    90% { opacity: 1; } 
+    100% { top: 100%; opacity: 0; } 
+}
+
+/* Elements UI Tombol */
+.toolbar { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-top: 20px; 
+}
+
+.btn { 
+    padding: 14px; 
+    border: none; 
+    border-radius: 12px; 
+    font-weight: 600; 
+    font-size: 14px; 
+    cursor: pointer; 
+    transition: all 0.2s; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+.btn:active { 
+    transform: translateY(2px); 
+}
+
+.btn-large { 
+    grid-column: span 2; 
+    padding: 16px; 
+    font-size: 16px; 
+}
+
+.btn-primary { 
+    background: var(--accent); 
+    color: white; 
+    box-shadow: 0 4px 6px rgba(234, 88, 12, 0.2); 
+}
+
+.btn-primary:hover { 
+    background: var(--accent-hover); 
+}
+
+.btn-outline { 
+    background: white; 
+    color: var(--text-main); 
+    border: 1px solid var(--border-color); 
+}
+
+.btn-success { 
+    background: var(--primary); 
+    color: white; 
+    width: 100%; 
+    margin-top: 15px; 
+    box-shadow: 0 4px 6px rgba(5, 150, 105, 0.2); 
+}
+
+.btn-success:hover { 
+    background: var(--primary-hover); 
+}
+
+/* Info Container */
+.status-card, .result-card { 
+    background: var(--card-bg); 
+    padding: 16px; 
+    border-radius: 16px; 
+    margin-top: 20px; 
+    border: 1px solid var(--border-color); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02); 
+}
+
+.status-card { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    font-size: 14px; 
+    font-weight: 600; 
+}
+
+.result-card label { 
+    display: block; 
+    font-size: 12px; 
+    font-weight: 700; 
+    color: var(--text-muted); 
+    margin-bottom: 8px; 
+    text-transform: uppercase; 
+}
+
+.result-card input { 
+    width: 100%; 
+    padding: 16px; 
+    font-size: 24px; 
+    text-align: center; 
+    font-weight: 700; 
+    letter-spacing: 3px; 
+    border-radius: 12px; 
+    border: 2px solid var(--border-color); 
+    background: #f8fafc; 
+    color: var(--primary); 
+    outline: none; 
+    transition: 0.3s; 
+}
+
+.result-card input:focus { 
+    border-color: var(--accent); 
+    background: white; 
+}
