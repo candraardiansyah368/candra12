@@ -87,7 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
     async function captureFrame() {
         return new Promise((resolve) => {
             if(!video.videoWidth) { resolve(null); return; }
-            let scale = 640 / video.videoWidth; 
+            // UBAH ANGKA 640 MENJADI 960 DI SINI:
+            let scale = 960 / video.videoWidth; 
             canvas.width = Math.floor(video.videoWidth * scale);
             canvas.height = Math.floor(video.videoHeight * scale);
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
